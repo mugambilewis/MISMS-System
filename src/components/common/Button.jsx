@@ -1,73 +1,42 @@
 import React from 'react'
+import { Loader2 } from 'lucide-react'
 
 const Button = ({
-  children,
+  type = 'button',
   variant = 'primary',
   size = 'md',
-  disabled = false,
   loading = false,
-  icon = null,
-  iconPosition = 'left',
-  onClick,
-  type = 'button',
   className = '',
+  children,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
-
-  const variantClasses = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500',
-    secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 focus:ring-secondary-500',
-    outline: 'border border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white focus:ring-primary-500',
-    ghost: 'text-primary-600 hover:bg-primary-50 focus:ring-primary-500',
-    danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
-    success: 'bg-green-600 hover:bg-green-700 text-white focus:ring-green-500',
-    warning: 'bg-yellow-600 hover:bg-yellow-700 text-white focus:ring-yellow-500'
+  const base =
+    'inline-flex items-center justify-center rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2'
+  const variants = {
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    secondary: 'bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-300',
+    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   }
-
-  const sizeClasses = {
+  const sizes = {
     sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base',
-    xl: 'px-8 py-4 text-lg'
+    md: 'px-4 py-2 text-base',
+    lg: 'px-5 py-2.5 text-lg',
   }
-
-  const iconSizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-5 h-5',
-    lg: 'w-6 h-6',
-    xl: 'w-7 h-7'
-  }
-
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
 
   return (
     <button
       type={type}
-      className={classes}
-      disabled={disabled || loading}
-      onClick={onClick}
+      disabled={loading}
+      className={`${base} ${variants[variant]} ${sizes[size]} ${className} ${
+        loading ? 'opacity-70 cursor-not-allowed' : ''
+      }`}
       {...props}
     >
-      {loading && (
-        <div className={`animate-spin rounded-full border-2 border-transparent border-t-current ${iconSizeClasses[size]} mr-2`}></div>
-      )}
-      
-      {!loading && icon && iconPosition === 'left' && (
-        <span className={`${iconSizeClasses[size]} mr-2`}>
-          {icon}
-        </span>
-      )}
-      
+      {loading && <Loader2 className="animate-spin w-5 h-5 mr-2" />}
       {children}
-      
-      {!loading && icon && iconPosition === 'right' && (
-        <span className={`${iconSizeClasses[size]} ml-2`}>
-          {icon}
-        </span>
-      )}
     </button>
   )
 }
 
 export default Button
+

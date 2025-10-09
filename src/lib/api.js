@@ -308,3 +308,70 @@ export const messageService = {
     return apiService.delete(TABLES.MESSAGES, id)
   }
 }
+
+// Dashboard and auth helpers
+export const dashboardService = {
+  async getAdminOverview() {
+    // proxy through Supabase edge function or REST RPC if available; placeholder fetch to backend route
+    const res = await fetch('/api/admin/dashboard')
+    if (!res.ok) throw new Error('Failed to load admin dashboard')
+    return res.json()
+  },
+  async getRegistrarOverview() {
+    const res = await fetch('/api/registrar/dashboard')
+    if (!res.ok) throw new Error('Failed to load registrar dashboard')
+    return res.json()
+  },
+  async getBursarOverview() {
+    const res = await fetch('/api/bursar/dashboard')
+    if (!res.ok) throw new Error('Failed to load bursar dashboard')
+    return res.json()
+  }
+}
+
+export const authApi = {
+  async reauth(password) {
+    const res = await fetch('/api/auth/reauth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    })
+    if (!res.ok) throw new Error('Reauthentication failed')
+    return res.json()
+  }
+}
+
+export const registrarApi = {
+  async listStudentsByIntake() {
+    const res = await fetch('/api/students')
+    if (!res.ok) throw new Error('Failed to load students')
+    return res.json()
+  },
+  async createStudent(payload) {
+    const res = await fetch('/api/students', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    if (!res.ok) throw new Error('Failed to create student')
+    return res.json()
+  }
+}
+
+export const bursarApi = {
+  async getPayments() {
+    const res = await fetch('/api/bursar/payments')
+    if (!res.ok) throw new Error('Failed to load payments')
+    return res.json()
+  },
+  async createPayment(payload) {
+    const res = await fetch('/api/bursar/payments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    if (!res.ok) throw new Error('Failed to create payment')
+    return res.json()
+  }
+}
+

@@ -92,3 +92,4 @@ export const ROLE_PERMISSIONS = {
     PERMISSIONS.VIEW_RESULTS
   ]
 }
+

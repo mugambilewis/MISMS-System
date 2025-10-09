@@ -2,7 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { GraduationCap } from 'lucide-react'
 
-const AuthLayout = () => {
+const AuthLayout = ({ children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -23,7 +23,7 @@ const AuthLayout = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
-          <Outlet />
+          {children || <Outlet />}
         </div>
       </div>
 
@@ -38,3 +38,4 @@ const AuthLayout = () => {
 }
 
 export default AuthLayout
+

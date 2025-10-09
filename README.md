@@ -218,3 +218,4 @@ For support and questions:
 - Styled with Tailwind CSS
 - Backend powered by Supabase
 - Icons by Lucide React
+

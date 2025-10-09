@@ -5,6 +5,7 @@ import { RoleProvider } from './context/RoleContext'
 import { ThemeProvider } from './context/ThemeContext'
 import ProtectedRoute from './routes/ProtectedRoute'
 import RoleBasedAccess from './routes/RoleBasedAccess'
+import RoleRedirect from './routes/RoleRedirect'
 
 import './index.css'
 
@@ -15,7 +16,12 @@ import BlankLayout from './layouts/BlankLayout'
 
 // Pages
 import LoginForm from './pages/auth/LoginForm'
+import RegisterForm from './pages/auth/RegisterForm'
 import Dashboard from './pages/dashboard/Dashboard'
+import AdminDashboard from './pages/dashboard/AdminDashboard'
+import RegistrarDashboard from './pages/dashboard/RegistrarDashboard'
+import BursarDashboard from './pages/dashboard/BursarDashboard'
+import AccessDenied from './pages/errors/AccessDenied'
 import NotFound from './pages/errors/NotFound'
 
 // Student Management
@@ -56,15 +62,23 @@ function App() {
                 <LoginForm />
               </AuthLayout>
             } />
+            <Route path="/register" element={
+              <AuthLayout>
+                <RegisterForm />
+              </AuthLayout>
+            } />
             
             {/* Protected routes */}
             <Route path="/" element={
               <ProtectedRoute>
                 <AdminLayout>
                   <Routes>
-                    {/* Dashboard */}
+                    {/* Role landings */}
                     <Route index element={<Navigate to="/dashboard" replace />} />
-                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="dashboard" element={<RoleRedirect />} />
+                    <Route path="admin/dashboard" element={<RoleBasedAccess requiredRole="admin"><AdminDashboard /></RoleBasedAccess>} />
+                    <Route path="registrar/dashboard" element={<RoleBasedAccess requiredRole="teacher"><RegistrarDashboard /></RoleBasedAccess>} />
+                    <Route path="bursar/dashboard" element={<RoleBasedAccess requiredRole="bursar"><BursarDashboard /></RoleBasedAccess>} />
                     
                     {/* Student Management */}
                     <Route path="students" element={
@@ -158,6 +172,11 @@ function App() {
                 <NotFound />
               </BlankLayout>
             } />
+            <Route path="/access-denied" element={
+              <BlankLayout>
+                <AccessDenied />
+              </BlankLayout>
+            } />
           </Routes>
         </RoleProvider>
       </AuthProvider>
@@ -166,3 +185,4 @@ function App() {
 }
 
 export default App
+

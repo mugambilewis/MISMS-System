@@ -169,3 +169,4 @@ export const InfoCard = ({
 }
 
 export default Card
+

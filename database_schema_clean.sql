@@ -379,3 +379,4 @@ CREATE POLICY "Teachers can view students in their classes" ON students FOR SELE
 CREATE POLICY "Students can view their own records" ON students FOR SELECT USING (
     user_id = auth.uid()
 );
+

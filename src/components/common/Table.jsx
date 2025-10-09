@@ -264,3 +264,4 @@ export const Pagination = ({
 }
 
 export default Table
+

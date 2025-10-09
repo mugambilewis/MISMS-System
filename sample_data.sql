@@ -46,3 +46,4 @@ INSERT INTO announcements (title, content, target_audience, priority, is_active,
 ('Welcome to New Academic Year', 'Welcome all students and staff to the 2024/2025 academic year. Classes resume on Monday, September 2nd, 2024.', 'all', 'normal', true, NOW()),
 ('Parent-Teacher Meeting', 'Parent-Teacher meeting is scheduled for Saturday, September 14th, 2024 at 10:00 AM. All parents are encouraged to attend.', 'parents', 'high', true, NOW()),
 ('Sports Day Announcement', 'Annual Sports Day will be held on Friday, October 25th, 2024. Students should come prepared for various sporting activities.', 'students', 'normal', true, NOW());
+

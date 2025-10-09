@@ -10,3 +10,4 @@ const BlankLayout = () => {
 }
 
 export default BlankLayout
+

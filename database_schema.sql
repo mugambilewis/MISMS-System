@@ -405,3 +405,4 @@ INSERT INTO subjects (name, code, level, description) VALUES
 ('Biology', 'BIO', 'senior', 'Biology'),
 ('Economics', 'ECO', 'senior', 'Economics'),
 ('Government', 'GOV', 'senior', 'Government');
+
