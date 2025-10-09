@@ -6,6 +6,8 @@ import { ThemeProvider } from './context/ThemeContext'
 import ProtectedRoute from './routes/ProtectedRoute'
 import RoleBasedAccess from './routes/RoleBasedAccess'
 
+import './index.css'
+
 // Layouts
 import AdminLayout from './layouts/AdminLayout'
 import AuthLayout from './layouts/AuthLayout'
